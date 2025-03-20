@@ -95,7 +95,7 @@ function App() {
               damping: 15,
               mass: 0.8,
             }}
-            className="w-full h-full p-6 md:p-8"
+            className="w-full h-full p-3 md:p-8"
             style={{
               willChange: "transform, opacity",
               backfaceVisibility: "hidden",

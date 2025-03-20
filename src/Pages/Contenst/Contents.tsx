@@ -28,7 +28,7 @@ export default function ContentStrategySection() {
       </div>
 
       {/* Main content */}
-      <div className="text-start relative z-10 max-w-7xl px-6 md:px-12 flex flex-col md:flex-row items-center justify-between gap-12">
+      <div className="text-start relative z-10 max-w-7xl px-4 md:px-12 flex flex-col md:flex-row items-center justify-between gap-12">
         <motion.div
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}

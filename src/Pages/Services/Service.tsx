@@ -54,7 +54,7 @@ export default function StrategicSEOSection() {
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 max-w-7xl px-6 md:px-12">
+      <div className="relative z-10 max-w-7xl px-4 md:px-12">
         <motion.div
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}

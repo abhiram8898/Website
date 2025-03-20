@@ -8,7 +8,7 @@ export default function FinalCTASection() {
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 max-w-6xl px-6 md:px-12">
+      <div className="relative z-10 max-w-6xl px-4 md:px-12">
         <h1 className="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300 animate-gradient">
           READY TO <br />
           <span className="inline-block mt-2 bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-pink-500">
