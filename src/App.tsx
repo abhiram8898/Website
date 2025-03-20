@@ -1,151 +1,111 @@
 import "./App.css";
-import Home from "./Pages/Home/Home";
-import backgroundImage from "../public/2.jpg";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, lazy, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const Home = lazy(() => import("./Pages/Home/Home"));
+
 function App() {
-  const [interactionState, setInteractionState] = useState<"initial" | "hovering" | "active">("initial");
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const [interactionState, setInteractionState] = useState<
+    "initial" | "active"
+  >("initial");
   const appRef = useRef<HTMLDivElement>(null);
+  const [countdown, setCountdown] = useState(3);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (interactionState === "initial") {
-        setCursorPosition({ x: e.clientX, y: e.clientY });
-      }
-    };
+    const INTRO_DURATION = 3000;
+    const countdownInterval = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          clearInterval(countdownInterval);
+          setInteractionState("active");
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    const timer = setTimeout(() => {
+      setInteractionState("active");
+      clearInterval(countdownInterval);
+    }, INTRO_DURATION);
 
     const handleInteraction = () => {
-      if (interactionState === "initial") {
-        setInteractionState("hovering");
-      }
-    };
-
-    const handleClick = () => {
+      clearTimeout(timer);
+      clearInterval(countdownInterval);
       setInteractionState("active");
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("mouseenter", handleInteraction);
-    window.addEventListener("touchstart", handleInteraction);
-    window.addEventListener("click", handleClick);
+    window.addEventListener("click", handleInteraction);
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseenter", handleInteraction);
-      window.removeEventListener("touchstart", handleInteraction);
-      window.removeEventListener("click", handleClick);
+      clearTimeout(timer);
+      clearInterval(countdownInterval);
+      window.removeEventListener("click", handleInteraction);
     };
-  }, [interactionState]);
-
-  const handleSkipIntro = () => {
-    setInteractionState("active");
-  };
+  }, []);
 
   return (
     <div
       ref={appRef}
       className="h-screen w-screen relative overflow-hidden"
       style={{
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        cursor: interactionState === "initial" ? "none" : "auto"
+        backgroundImage:
+          "url('https://aicontentfy.com/hubfs/Blog/6120d5b1-07be-414e-9e85-498e6a3da09a.jpg')",
+        cursor: interactionState === "initial" ? "pointer" : "auto",
       }}
     >
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {interactionState === "initial" && (
-          <motion.div 
-            className="absolute inset-0 flex flex-col items-center justify-center z-20 bg-black/40"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <motion.h1 
-              className="text-white text-center text-4xl md:text-6xl font-bold mb-8 px-4"
-              initial={{ y: -50 }}
-              animate={{ y: 0 }}
-              transition={{ delay: 0.2, type: "spring" }}
-            >
-              Illuminate your brand, with a touch of elegance
-            </motion.h1>
-            <motion.div
-              className="flex flex-col items-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-            >
-              <p className="text-white text-xl mb-6">Click anywhere to continue</p>
-              <button 
-                onClick={handleSkipIntro}
-                className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-orange-300"
-              >
-                Enter Site
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-
-        {interactionState === "initial" && (
-          <motion.div
-            className="w-12 h-12 rounded-full bg-orange-500 fixed pointer-events-none z-30 flex items-center justify-center"
-            style={{ 
-              left: cursorPosition.x - 24, 
-              top: cursorPosition.y - 24 
-            }}
-            initial={{ scale: 0 }}
-            animate={{ scale: [0, 1.2, 1] }}
-            transition={{ duration: 0.5 }}
-          >
-            <span className="text-white text-xs">Click</span>
-          </motion.div>
-        )}
-
-        {interactionState === "hovering" && (
-          <motion.div 
-            className="absolute inset-0 flex items-center justify-center z-20"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <motion.div
-              className="bg-white/90 p-10 rounded-xl max-w-2xl text-center shadow-2xl"
-              initial={{ scale: 0.8, y: 50 }}
-              animate={{ scale: 1, y: 0 }}
-              transition={{ type: "spring", damping: 20 }}
-            >
-              <h2 className="text-3xl font-bold text-gray-800 mb-4">Welcome to Lumen Digital</h2>
-              <p className="text-gray-600 mb-6">Ready to transform your digital presence with strategies that illuminate your path to success?</p>
-              <button 
-                onClick={handleSkipIntro}
-                className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-orange-300"
-              >
-                Let's Begin
-              </button>
-            </motion.div>
-          </motion.div>
+          <div className="absolute inset-0 flex flex-col items-center justify-center z-20 bg-gradient-to-b from-black/70 to-black/50 backdrop-blur-sm">
+            <h1 className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 animate-gradient-fast text-center text-4xl md:text-6xl lg:text-7xl font-bold mb-8 px-4 tracking-tight">
+              Illuminate Your Brand
+              <span className="block text-2xl md:text-3xl lg:text-4xl mt-4 text-gray-300 font-normal">
+                with a touch of elegance
+              </span>
+            </h1>
+            <div className="flex items-center gap-4">
+              <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
+              <p className="text-white text-xl md:text-2xl">
+                Enter in <span className="font-semibold">{countdown}s</span>
+              </p>
+              <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
+            </div>
+          </div>
         )}
       </AnimatePresence>
 
       {interactionState === "active" && (
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{
-            type: "spring",
-            stiffness: 260,
-            damping: 20,
-          }}
-          className="w-full h-full"
+        <Suspense
+          fallback={
+            <div className="w-full h-full flex items-center justify-center bg-black/20 backdrop-blur-sm">
+              <div className="relative">
+                <div className="w-12 h-12 border-4 border-white/20 border-t-white rounded-full animate-spin" />
+                <div className="absolute inset-0 w-12 h-12 border-4 border-white/10 rounded-full animate-pulse" />
+              </div>
+            </div>
+          }
         >
-          <div className="w-full h-full p-4 md:p-8">
+          <motion.div
+            initial={{ scale: 0.2, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{
+              duration: 0.8,
+              type: "tween",
+              stiffness: 80,
+              damping: 15,
+              mass: 0.8,
+            }}
+            className="w-full h-full p-6 md:p-8"
+            style={{
+              willChange: "transform, opacity",
+              backfaceVisibility: "hidden",
+              perspective: 1000,
+              transformStyle: "preserve-3d",
+            }}
+          >
             <Home />
-          </div>
-        </motion.div>
+          </motion.div>
+        </Suspense>
       )}
     </div>
   );

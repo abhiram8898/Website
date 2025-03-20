@@ -1,8 +1,10 @@
-import React, { useRef } from "react";
-import HeroSection from "../HeroSection/Herosection";
-import StrategicSEOSection from "../Services/Service";
-import ContentStrategySection from "../Contenst/Contents";
-import FinalCTASection from "../FTC/Ftc";
+import React, { useRef, lazy, Suspense } from "react";
+
+// Lazy load components
+const HeroSection = lazy(() => import("../HeroSection/Herosection"));
+const StrategicSEOSection = lazy(() => import("../Services/Service"));
+const ContentStrategySection = lazy(() => import("../Contenst/Contents")); 
+const FinalCTASection = lazy(() => import("../FTC/Ftc"));
 
 const Home: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -12,26 +14,29 @@ const Home: React.FC = () => {
 
   return (
     <div className="flex flex-col w-full h-full">
-      <div className="w-full h-full bg-black rounded-2xl border-8 border-gray-800 shadow-2xl relative overflow-y-auto">
+      <div className="w-full h-full bg-black rounded-2xl border-8 border-gray-800 shadow-2xl relative">
         {/* TV Frame */}
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-gray-900 opacity-20 pointer-events-none"></div>
 
         {/* Scrollable Content */}
         <div className="overflow-y-auto h-full">
-          <div ref={heroRef}>
-            <HeroSection />
-          </div>
+          <Suspense fallback={<div className="h-screen flex items-center justify-center">Loading...</div>}>
+            <div ref={heroRef}>
+              <HeroSection />
+            </div>
 
-          <div ref={servicesRef}>
-            <StrategicSEOSection />
-          </div>
+            <div ref={servicesRef}>
+              <StrategicSEOSection />
+            </div>
 
-          <div ref={contentRef}>
-            <ContentStrategySection />
-          </div>
-          <div ref={finalCTARef}>
-            <FinalCTASection />
-          </div>
+            <div ref={contentRef}>
+              <ContentStrategySection />
+            </div>
+            
+            <div ref={finalCTARef}>
+              <FinalCTASection />
+            </div>
+          </Suspense>
         </div>
 
         {/* TV Controls */}
