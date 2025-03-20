@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function ContentStrategySection() {
   return (
     <section className="bg-black py-20 px-6 flex justify-center items-center h-screen">

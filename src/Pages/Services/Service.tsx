@@ -1,5 +1,3 @@
-import React from "react";
-
 const seoServices = [
   {
     title: "KEYWORD RESEARCH & STRATEGY",
