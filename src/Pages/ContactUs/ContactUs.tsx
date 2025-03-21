@@ -1,15 +1,10 @@
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { motion } from "framer-motion";
 
-export default function HeroSection() {
+export default function ContactUs() {
   return (
-    <section className="relative bg-black text-white overflow-hidden h-screen flex items-center justify-center">
+    <section className=" text-white overflow-hidden min-h-screen w-screen flex items-center justify-center fixed top-0 left-0">
       {/* Animated background with parallax effect */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-radial from-purple-900/30 via-black to-black animate-pulse" />
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-40 bg-repeat" />
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-pink-500/10" />
-      </div>
 
       {/* Floating particles */}
       <div className="absolute inset-0 z-0">
@@ -21,14 +16,14 @@ export default function HeroSection() {
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
               animationDelay: `${Math.random() * 5}s`,
-              opacity: Math.random() * 0.5
+              opacity: Math.random() * 0.5,
             }}
           />
         ))}
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 max-w-6xl px-4 md:px-12 text-center">
+      <div className="relative z-10 px-4 md:px-12 text-center">
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -43,19 +38,19 @@ export default function HeroSection() {
           />
         </motion.div>
 
-        <motion.h1 
+        <motion.h1
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-6xl md:text-8xl font-black leading-tight tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white via-orange-200 to-gray-300 animate-gradient"
+          className="text-6xl md:text-8xl font-black leading-tight tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white via-violet-200 to-gray-300 animate-gradient"
         >
           ILLUMINATE YOUR <br />
-          <span className="inline-block mt-2 bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 animate-gradient-fast">
+          <span className="inline-block mt-2 bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-indigo-500 to-emerald-500 animate-gradient-fast">
             MARKETING FUTURE
           </span>
         </motion.h1>
 
-        <motion.p 
+        <motion.p
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.6 }}
@@ -66,28 +61,38 @@ export default function HeroSection() {
           innovative marketing solutions tailored to deliver measurable results.
         </motion.p>
 
-        <motion.div 
+        <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.7, duration: 0.6 }}
           className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6"
         >
-          <button className="group px-10 py-5 bg-gradient-to-r from-orange-500 via-pink-500 to-purple-500 text-white text-lg font-bold rounded-full shadow-xl hover:shadow-orange-500/30 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105">
+          <button className="group px-10 py-5 bg-gradient-to-r from-violet-500 via-indigo-500 to-emerald-500 text-white text-lg font-bold rounded-full shadow-xl hover:shadow-violet-500/30 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105">
             <span className="flex items-center gap-2">
               Start Free Audit
-              <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              <svg
+                className="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                />
               </svg>
             </span>
           </button>
-          <button className="px-10 py-5 bg-white/5 backdrop-blur-sm border-2 border-white/20 text-white text-lg font-bold rounded-full hover:bg-white/10 transition-all duration-300 hover:border-orange-500/50">
+          <button className="px-10 py-5 bg-white/5 backdrop-blur-sm border-2 border-white/20 text-white text-lg font-bold rounded-full hover:bg-white/10 transition-all duration-300 hover:border-violet-500/50">
             Watch Demo
           </button>
         </motion.div>
       </div>
 
       {/* Navigation */}
-      <motion.nav 
+      <motion.nav
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 1, duration: 0.6 }}
@@ -97,24 +102,12 @@ export default function HeroSection() {
           <a
             key={item}
             href={`#${item.toLowerCase().replace(/ /g, "-")}`}
-            className="text-base text-gray-300 hover:text-white transition-colors duration-300 hover:underline decoration-orange-500 underline-offset-4"
+            className="text-base text-gray-300 hover:text-white transition-colors duration-300 hover:underline decoration-violet-500 underline-offset-4"
           >
             {item}
           </a>
         ))}
       </motion.nav>
-
-      {/* Scroll indicator */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
-      >
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-scroll" />
-        </div>
-      </motion.div>
     </section>
   );
 }

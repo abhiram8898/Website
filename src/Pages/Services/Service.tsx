@@ -1,124 +1,304 @@
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import { motion } from "framer-motion";
+import { motion, useAnimation, useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import digitalMarketing from "../../../public/Marketing consulting-cuate-min.png";
+import socialMediaMarketing from "../../../public/Marketing-pana-min.png";
+import ppcAdvertising from "../../../public/Business Plan-amico-min.png";
+import webDevelopment from "../../../public/At the office-cuate-min.png";
+import design from "../../../public/Website Creator-amico.png";
+import softwareDevelopment from "../../../public/Data extraction-rafiki-min.png";
+import mobileDevelopment from "../../../public/Online world-amico-min.png";
+import digitalMarketing1 from "../../../public/Online world-rafiki-min.png";
 
 const seoServices = [
   {
-    title: "KEYWORD RESEARCH & STRATEGY",
-    description: "Identifying the most valuable keywords for your business.",
-    icon: "https://lottie.host/4a26b5c7-37f4-4c1d-b5f3-c272c6cd2ab4/xJuGh4IXQZ.lottie",
+    title: "DIGITAL MARKETING",
+    icon: digitalMarketing1,
   },
   {
-    title: "ON-PAGE OPTIMIZATION",
-    description:
-      "Improving your site's content and structure for maximum visibility.",
-    icon: "https://lottie.host/ff7c018c-8c94-4b84-87ef-17383a037d36/tqVGLuFh4N.lottie",
+    title: "SOCIAL MEDIA MARKETING",
+    icon: digitalMarketing,
   },
   {
-    title: "TECHNICAL SEO AUDITS",
-    description:
-      "Ensuring your site's technically sound to perform well in search engines.",
-    icon: "https://lottie.host/73aa0bea-6f91-442d-927e-0813231ca2cd/F5APCMf7Ud.lottie",
+    title: "SEO",
+    icon: socialMediaMarketing,
   },
   {
-    title: "OFF-PAGE SEO OPTIMIZATION",
-    description:
-      "Enhancing your site's relevance through strategic link building and brand mentions.",
-    icon: "https://lottie.host/4a26b5c7-37f4-4c1d-b5f3-c272c6cd2ab4/xJuGh4IXQZ.lottie",
+    title: "PPC ADVERTISING",
+    icon: ppcAdvertising,
+  },
+  {
+    title: "WEB DEVELOPMENT",
+    icon: webDevelopment,
+  },
+  {
+    title: "MOBILE DEVELOPMENT",
+    icon: mobileDevelopment,
+  },
+  {
+    title: "SOFTWARE DEVELOPMENT",
+    icon: softwareDevelopment,
+  },
+  {
+    title: "UI/UX DESIGN",
+    icon: design,
   },
 ];
 
-export default function StrategicSEOSection() {
+// Rainbow border animation component
+const AnimatedBorder = ({ isHovered }: { isHovered: boolean }) => {
   return (
-    <section className="relative bg-black text-white overflow-hidden h-screen flex items-center justify-center">
-      {/* Animated background with parallax effect */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-radial from-purple-900/30 via-black to-black animate-pulse" />
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-40 bg-repeat" />
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 via-transparent to-pink-500/10" />
-      </div>
+    <motion.div
+      className="absolute inset-0 rounded-3xl overflow-hidden pointer-events-none"
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{
+        opacity: isHovered ? 1 : 0,
+        scale: isHovered ? 1 : 0.95,
+      }}
+      transition={{
+        duration: 0.4,
+        ease: "easeOut",
+      }}
+    >
+      <motion.div
+        className="w-[200%] h-[200%] absolute -inset-1/2"
+        initial={{ rotate: 0 }}
+        animate={{ rotate: 360 }}
+        transition={{
+          duration: isHovered ? 4 : 0,
+          ease: "linear",
+          repeat: Infinity,
+        }}
+        style={{
+          background: `
+            conic-gradient(
+              from 0deg,
+              #8b5cf6,
+              #6366f1,
+              #10b981,
+              #3b82f6,
+              #4f46e5,
+              #8b5cf6
+            )
+          `,
+          filter: "brightness(1.2) saturate(1.2)",
+        }}
+      />
+    </motion.div>
+  );
+};
 
-      {/* Floating particles */}
-      <div className="absolute inset-0 z-0">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-white rounded-full animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 5}s`,
-              opacity: Math.random() * 0.5,
-            }}
+// Card component with enhanced animations
+const ServiceCard = ({ service, index, navigate }: any) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const controls = useAnimation();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false, amount: 0.3 });
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    }
+  }, [controls, isInView]);
+
+  const cardVariants = {
+    hidden: {
+      opacity: 0,
+      y: 100, // optional lift effect
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1, // default full size
+      transition: {
+        duration: 0.5,
+        delay: index * 0.08,
+        type: "spring",
+        stiffness: 100,
+        damping: 10,
+      },
+    },
+    hover: {
+      scale: 1.1, // BIG pop out on hover
+      zIndex: 20, // ensure it comes above others
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 20,
+      },
+    },
+    tap: {
+      scale: 1.4,
+      transition: { duration: 0.1 },
+    },
+  };
+
+  const imageVariants = {
+    initial: { scale: 1 },
+    hover: {
+      scale: 1.05,
+      rotate: 2,
+      transition: {
+        scale: {
+          type: "spring",
+          stiffness: 300,
+          damping: 20,
+        },
+        rotate: {
+          duration: 0.3,
+          ease: "easeOut",
+        },
+      },
+    },
+  };
+
+  // Text animation
+  const textVariants = {
+    initial: {
+      backgroundPosition: "0% 50%",
+      scale: 1,
+    },
+    hover: {
+      backgroundPosition: "100% 50%",
+      scale: 1.05,
+      transition: {
+        backgroundPosition: {
+          duration: 1.5,
+          repeat: Infinity,
+          repeatType: "reverse",
+          ease: "linear",
+        },
+        scale: {
+          duration: 0.3,
+          ease: "easeOut",
+        },
+      },
+    },
+  };
+
+  // Glow effect
+  const glowVariants = {
+    initial: { opacity: 0 },
+    hover: {
+      opacity: 0.6,
+      transition: { duration: 0.3 },
+    },
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={controls}
+      whileHover="hover"
+      whileTap="tap"
+      variants={cardVariants}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      className="relative bg-gradient-to-br from-violet-500/20 via-indigo-500/20 to-emerald-500/25 backdrop-blur-xl p-4 rounded-3xl border-2 border-white/10 cursor-pointer z-10 transform-all"
+      onClick={() => navigate("/seoService")}
+      style={{
+        willChange: "transform", // Hint for browser optimization
+      }}
+    >
+      {/* Animated border effect */}
+      <AnimatedBorder isHovered={isHovered} />
+
+      {/* Inner content with z-index to appear above the border */}
+      <div className="relative z-10 bg-black/50 rounded-2xl p-4">
+        {/* Glow effect on hover */}
+        <motion.div
+          className="absolute inset-0 bg-indigo-500/20 rounded-2xl blur-xl"
+          variants={glowVariants}
+        />
+
+        <div className="relative overflow-hidden rounded-xl">
+          <motion.img
+            src={service.icon}
+            alt={service.title}
+            className="h-52 w-full mx-auto object-contain"
+            variants={imageVariants}
+            loading="lazy"
+            style={{ willChange: "transform" }}
           />
-        ))}
-      </div>
+        </div>
 
-      {/* Main content */}
-      <div className="relative z-10 max-w-7xl px-4 md:px-12">
-        <motion.div
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
+        <motion.h4
+          variants={textVariants}
+          className="font-bold text-center text-xl mt-4 bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-indigo-400 to-emerald-400"
+          style={{
+            backgroundSize: "200% 100%",
+            willChange: "transform, background-position",
+          }}
         >
-          <h1 className="text-6xl md:text-8xl font-black leading-tight tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white via-orange-200 to-gray-300 animate-gradient text-center">
-            STRATEGIC SEO <br />
-            <span className="inline-block mt-2 bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-pink-500 to-purple-500 animate-gradient-fast">
-              DRIVE ORGANIC GROWTH
-            </span>
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-300 mt-8 max-w-3xl mx-auto leading-relaxed font-light text-center">
-            At Christy Digital, we understand that no two businesses are the
-            same. That's why we offer a full suite of services, each tailored to
-            address your unique challenges and goals.
-          </p>
-        </motion.div>
+          {service.title}
+        </motion.h4>
 
+        {/* Animated highlight line under title */}
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="mt-16 grid md:grid-cols-4 gap-8"
+          className="h-0.5 bg-gradient-to-r from-violet-400 via-indigo-400 to-emerald-400 mx-auto mt-2"
+          initial={{ width: "0%" }}
+          variants={{
+            hover: {
+              width: "70%",
+              transition: { duration: 0.3, ease: "easeOut" },
+            },
+          }}
+        />
+      </div>
+    </motion.div>
+  );
+};
+
+const StrategicSEOSection = () => {
+  const navigate = useNavigate();
+  const controls = useAnimation();
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start("visible");
+    }
+  }, [controls, isInView]);
+
+  // Grid container animation
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  return (
+    <section
+      ref={ref}
+      className="h-screen w-screen text-white flex items-center justify-center overflow-hidden relative"
+    >
+      {/* Main content */}
+      <div className="z-10 w-full h-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6"
+          variants={containerVariants}
+          initial="hidden"
+          animate={controls}
         >
           {seoServices.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: index * 0.1 + 0.5 }}
-              className="group relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl p-8 rounded-2xl border border-white/10 hover:border-orange-500/50 transition-all duration-500 hover:scale-105"
-            >
-              <div className="absolute -inset-1 bg-gradient-to-r from-orange-500/20 via-pink-500/20 to-purple-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition-all duration-500" />
-              <div className="relative">
-                <DotLottieReact
-                  src={service.icon}
-                  loop
-                  autoplay
-                  speed={1}
-                  style={{ width: "100%", height: "120px" }}
-                />
-                <h4 className="font-bold text-lg mt-4 mb-3 bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-pink-500">
-                  {service.title}
-                </h4>
-                <p className="text-gray-300 text-sm leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
-            </motion.div>
+            <ServiceCard
+              key={service.title}
+              service={service}
+              index={index}
+              navigate={navigate}
+            />
           ))}
         </motion.div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
-      >
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-scroll" />
-        </div>
-      </motion.div>
     </section>
   );
-}
+};
+
+export default StrategicSEOSection;
