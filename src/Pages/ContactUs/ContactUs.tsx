@@ -3,7 +3,7 @@ import contactUs from "../../../public/Mobile Marketing-pana.png";
 
 export default function ContactUs() {
   return (
-    <section className="text-white overflow-hidden min-h-screen w-screen flex items-center justify-center fixed top-0 left-0">
+    <section className="text-white overflow-hidden min-h-screen w-screen flex items-center justify-center ">
       {/* Animated background with parallax effect */}
 
       {/* Floating particles */}

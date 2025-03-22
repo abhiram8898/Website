@@ -9,6 +9,13 @@
   justify-content: center;
   align-items: center;
   background-color: #000;
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+#root::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
 }
 
 .logo {
@@ -41,8 +48,4 @@
 .card {
   margin: 0;
   padding: 0;
-}
-
-.read-the-docs {
-  color: #888;
 }

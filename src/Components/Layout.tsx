@@ -1,6 +1,7 @@
 // Layout.tsx
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
+import Footer from "./Footer";
 
 const Layout: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ const Layout: React.FC = () => {
           <Outlet />
         </main>
       </div>
+      <Footer />
     </div>
   );
 };
