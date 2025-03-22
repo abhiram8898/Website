@@ -202,7 +202,7 @@ const ServiceCard = ({ service, index, navigate }: ServiceCardProps) => {
       variants={cardVariants}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="relative bg-gradient-to-br from-violet-500/20 via-indigo-500/20 to-emerald-500/25 backdrop-blur-xl p-2 sm:p-4 rounded-2xl sm:rounded-3xl border-2 border-white/10 cursor-pointer z-10 transform-all"
+      className="relative bg-gradient-to-br from-violet-500/20 via-indigo-500/20 to-emerald-500/25 backdrop-blur-xl p-2  rounded-2xl sm:rounded-3xl border-1 border-white/10 cursor-pointer z-10 transform-all"
       onClick={() => navigate("/seoService")}
       style={{
         willChange: "transform",
