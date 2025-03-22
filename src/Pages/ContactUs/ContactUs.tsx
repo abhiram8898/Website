@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import contactUs from "../../../public/Mobile Marketing-pana.png";
 
 export default function ContactUs() {
   return (
@@ -29,11 +30,7 @@ export default function ContactUs() {
           transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
           className="w-full max-w-3xl mx-auto flex justify-center items-center"
         >
-          <img
-            src="../../../public/Mobile Marketing-pana.png"
-            alt=""
-            className="size-84"
-          />
+          <img src={contactUs} alt="" className="size-84" />
         </motion.div>
 
         <motion.h1

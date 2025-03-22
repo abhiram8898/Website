@@ -7,7 +7,7 @@ const Layout: React.FC = () => {
     <div className="h-screen w-screen bg-black">
       {/* Main content */}
       <Header />
-      <div className="z-10 pt-12">
+      <div className="z-10 pt-6 md:pt-4">
         <main>
           <Outlet />
         </main>
