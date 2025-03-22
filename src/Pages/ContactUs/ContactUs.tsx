@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export default function ContactUs() {
   return (
-    <section className=" text-white overflow-hidden min-h-screen w-screen flex items-center justify-center fixed top-0 left-0">
+    <section className="text-white overflow-hidden min-h-screen w-screen flex items-center justify-center fixed top-0 left-0">
       {/* Animated background with parallax effect */}
 
       {/* Floating particles */}
@@ -23,18 +23,19 @@ export default function ContactUs() {
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 px-4 md:px-12 text-center">
+      <div className="relative z-10 px-4 sm:px-6 lg:px-12 text-center max-w-7xl mx-auto w-full">
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.8, type: "spring" }}
+          className="w-full max-w-3xl mx-auto"
         >
           <DotLottieReact
             src="https://lottie.host/73aa0bea-6f91-442d-927e-0813231ca2cd/F5APCMf7Ud.lottie"
             loop
             autoplay
             speed={1}
-            style={{ width: "100%", height: "300px" }}
+            style={{ width: "100%", height: "200px", maxHeight: "300px" }}
           />
         </motion.div>
 
@@ -42,9 +43,9 @@ export default function ContactUs() {
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-6xl md:text-8xl font-black leading-tight tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white via-violet-200 to-gray-300 animate-gradient"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black leading-tight tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white via-violet-200 to-gray-300 animate-gradient px-4"
         >
-          ILLUMINATE YOUR <br />
+          ILLUMINATE YOUR <br className="hidden sm:block" />
           <span className="inline-block mt-2 bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-indigo-500 to-emerald-500 animate-gradient-fast">
             MARKETING FUTURE
           </span>
@@ -54,7 +55,7 @@ export default function ContactUs() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.6 }}
-          className="text-xl md:text-2xl text-gray-300 mt-8 max-w-3xl mx-auto leading-relaxed font-light"
+          className="text-lg sm:text-xl md:text-2xl text-gray-300 mt-6 sm:mt-8 max-w-3xl mx-auto leading-relaxed font-light px-4"
         >
           Transform your digital presence with our data-driven strategies. We
           help ambitious businesses achieve exceptional growth through
@@ -65,13 +66,13 @@ export default function ContactUs() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.7, duration: 0.6 }}
-          className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6"
+          className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 px-4"
         >
-          <button className="group px-10 py-5 bg-gradient-to-r from-violet-500 via-indigo-500 to-emerald-500 text-white text-lg font-bold rounded-full shadow-xl hover:shadow-violet-500/30 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105">
-            <span className="flex items-center gap-2">
+          <button className="w-full sm:w-auto group px-6 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-violet-500 via-indigo-500 to-emerald-500 text-white text-base sm:text-lg font-bold rounded-full shadow-xl hover:shadow-violet-500/30 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105">
+            <span className="flex items-center justify-center gap-2">
               Start Free Audit
               <svg
-                className="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -85,7 +86,7 @@ export default function ContactUs() {
               </svg>
             </span>
           </button>
-          <button className="px-10 py-5 bg-white/5 backdrop-blur-sm border-2 border-white/20 text-white text-lg font-bold rounded-full hover:bg-white/10 transition-all duration-300 hover:border-violet-500/50">
+          <button className="w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 bg-white/5 backdrop-blur-sm border-2 border-white/20 text-white text-base sm:text-lg font-bold rounded-full hover:bg-white/10 transition-all duration-300 hover:border-violet-500/50">
             Watch Demo
           </button>
         </motion.div>
@@ -96,13 +97,13 @@ export default function ContactUs() {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 1, duration: 0.6 }}
-        className="absolute top-8 right-10 z-10 hidden md:flex items-center gap-8"
+        className="absolute top-4 sm:top-8 right-4 sm:right-10 z-10 hidden md:flex items-center gap-4 sm:gap-8"
       >
         {["About", "Services", "Case Studies", "Contact"].map((item) => (
           <a
             key={item}
             href={`#${item.toLowerCase().replace(/ /g, "-")}`}
-            className="text-base text-gray-300 hover:text-white transition-colors duration-300 hover:underline decoration-violet-500 underline-offset-4"
+            className="text-sm sm:text-base text-gray-300 hover:text-white transition-colors duration-300 hover:underline decoration-violet-500 underline-offset-4"
           >
             {item}
           </a>

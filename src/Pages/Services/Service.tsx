@@ -16,7 +16,7 @@ const seoServices = [
     icon: digitalMarketing1,
   },
   {
-    title: "SOCIAL MEDIA MARKETING",
+    title: "SOCIAL MEDIA MARKETING", 
     icon: digitalMarketing,
   },
   {
@@ -88,8 +88,17 @@ const AnimatedBorder = ({ isHovered }: { isHovered: boolean }) => {
   );
 };
 
+interface ServiceCardProps {
+  service: {
+    title: string;
+    icon: string;
+  };
+  index: number;
+  navigate: (path: string) => void;
+}
+
 // Card component with enhanced animations
-const ServiceCard = ({ service, index, navigate }: any) => {
+const ServiceCard = ({ service, index, navigate }: ServiceCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const controls = useAnimation();
   const ref = useRef(null);
@@ -104,12 +113,12 @@ const ServiceCard = ({ service, index, navigate }: any) => {
   const cardVariants = {
     hidden: {
       opacity: 0,
-      y: 100, // optional lift effect
+      y: 100,
     },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1, // default full size
+      scale: 1,
       transition: {
         duration: 0.5,
         delay: index * 0.08,
@@ -119,8 +128,8 @@ const ServiceCard = ({ service, index, navigate }: any) => {
       },
     },
     hover: {
-      scale: 1.1, // BIG pop out on hover
-      zIndex: 20, // ensure it comes above others
+      scale: 1.05,
+      zIndex: 20,
       transition: {
         type: "spring",
         stiffness: 400,
@@ -128,7 +137,7 @@ const ServiceCard = ({ service, index, navigate }: any) => {
       },
     },
     tap: {
-      scale: 1.4,
+      scale: 0.98,
       transition: { duration: 0.1 },
     },
   };
@@ -152,7 +161,6 @@ const ServiceCard = ({ service, index, navigate }: any) => {
     },
   };
 
-  // Text animation
   const textVariants = {
     initial: {
       backgroundPosition: "0% 50%",
@@ -176,7 +184,6 @@ const ServiceCard = ({ service, index, navigate }: any) => {
     },
   };
 
-  // Glow effect
   const glowVariants = {
     initial: { opacity: 0 },
     hover: {
@@ -195,28 +202,25 @@ const ServiceCard = ({ service, index, navigate }: any) => {
       variants={cardVariants}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="relative bg-gradient-to-br from-violet-500/20 via-indigo-500/20 to-emerald-500/25 backdrop-blur-xl p-4 rounded-3xl border-2 border-white/10 cursor-pointer z-10 transform-all"
+      className="relative bg-gradient-to-br from-violet-500/20 via-indigo-500/20 to-emerald-500/25 backdrop-blur-xl p-2 sm:p-4 rounded-2xl sm:rounded-3xl border-2 border-white/10 cursor-pointer z-10 transform-all"
       onClick={() => navigate("/seoService")}
       style={{
-        willChange: "transform", // Hint for browser optimization
+        willChange: "transform",
       }}
     >
-      {/* Animated border effect */}
       <AnimatedBorder isHovered={isHovered} />
 
-      {/* Inner content with z-index to appear above the border */}
-      <div className="relative z-10 bg-black/50 rounded-2xl p-4">
-        {/* Glow effect on hover */}
+      <div className="relative z-10 bg-black/50 rounded-xl sm:rounded-2xl p-2 sm:p-4">
         <motion.div
-          className="absolute inset-0 bg-indigo-500/20 rounded-2xl blur-xl"
+          className="absolute inset-0 bg-indigo-500/20 rounded-xl sm:rounded-2xl blur-xl"
           variants={glowVariants}
         />
 
-        <div className="relative overflow-hidden rounded-xl">
+        <div className="relative overflow-hidden rounded-lg sm:rounded-xl">
           <motion.img
             src={service.icon}
             alt={service.title}
-            className="h-52 w-full mx-auto object-contain"
+            className="h-32 sm:h-40 md:h-52 w-full mx-auto object-contain"
             variants={imageVariants}
             loading="lazy"
             style={{ willChange: "transform" }}
@@ -225,7 +229,7 @@ const ServiceCard = ({ service, index, navigate }: any) => {
 
         <motion.h4
           variants={textVariants}
-          className="font-bold text-center text-xl mt-4 bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-indigo-400 to-emerald-400"
+          className="font-bold text-center text-sm sm:text-base md:text-xl mt-2 sm:mt-4 bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-indigo-400 to-emerald-400"
           style={{
             backgroundSize: "200% 100%",
             willChange: "transform, background-position",
@@ -234,9 +238,8 @@ const ServiceCard = ({ service, index, navigate }: any) => {
           {service.title}
         </motion.h4>
 
-        {/* Animated highlight line under title */}
         <motion.div
-          className="h-0.5 bg-gradient-to-r from-violet-400 via-indigo-400 to-emerald-400 mx-auto mt-2"
+          className="h-0.5 bg-gradient-to-r from-violet-400 via-indigo-400 to-emerald-400 mx-auto mt-1 sm:mt-2"
           initial={{ width: "0%" }}
           variants={{
             hover: {
@@ -262,7 +265,6 @@ const StrategicSEOSection = () => {
     }
   }, [controls, isInView]);
 
-  // Grid container animation
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -277,12 +279,11 @@ const StrategicSEOSection = () => {
   return (
     <section
       ref={ref}
-      className="h-screen w-screen text-white flex items-center justify-center overflow-hidden relative"
+      className="min-h-screen w-full text-white flex items-center justify-center overflow-hidden relative py-16 sm:py-24"
     >
-      {/* Main content */}
-      <div className="z-10 w-full h-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
+      <div className="z-10 w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6"
           variants={containerVariants}
           initial="hidden"
           animate={controls}
