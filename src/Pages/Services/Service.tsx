@@ -13,34 +13,42 @@ import digitalMarketing1 from "../../../public/Digital marketingCompressed.png";
 const seoServices = [
   {
     title: "DIGITAL MARKETING",
+    shortTitle: "DIGITAL",
     icon: digitalMarketing1,
   },
   {
     title: "SOCIAL MEDIA MARKETING",
+    shortTitle: "SOCIAL",
     icon: digitalMarketing,
   },
   {
     title: "SEO",
+    shortTitle: "SEO",
     icon: socialMediaMarketing,
   },
   {
     title: "PPC ADVERTISING",
+    shortTitle: "PPC",
     icon: ppcAdvertising,
   },
   {
     title: "WEB DEVELOPMENT",
+    shortTitle: "WEB",
     icon: webDevelopment,
   },
   {
     title: "MOBILE DEVELOPMENT",
+    shortTitle: "MOBILE",
     icon: mobileDevelopment,
   },
   {
     title: "SOFTWARE DEVELOPMENT",
+    shortTitle: "SOFTWARE",
     icon: softwareDevelopment,
   },
   {
     title: "UI/UX DESIGN",
+    shortTitle: "UI/UX",
     icon: design,
   },
 ];
@@ -91,6 +99,7 @@ const AnimatedBorder = ({ isHovered }: { isHovered: boolean }) => {
 interface ServiceCardProps {
   service: {
     title: string;
+    shortTitle: string;
     icon: string;
   };
   index: number;
@@ -235,7 +244,8 @@ const ServiceCard = ({ service, index, navigate }: ServiceCardProps) => {
             willChange: "transform, background-position",
           }}
         >
-          {service.title}
+          <span className="hidden sm:inline">{service.title}</span>
+          <span className="sm:hidden">{service.shortTitle}</span>
         </motion.h4>
 
         <motion.div
@@ -283,7 +293,7 @@ const StrategicSEOSection = () => {
     >
       <div className="z-10 w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6"
+          className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6"
           variants={containerVariants}
           initial="hidden"
           animate={controls}
