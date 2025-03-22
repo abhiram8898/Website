@@ -1,4 +1,3 @@
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { motion } from "framer-motion";
 
 export default function ContactUs() {
@@ -23,19 +22,17 @@ export default function ContactUs() {
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 px-4 sm:px-6 lg:px-12 text-center max-w-7xl mx-auto w-full">
+      <div className="relative z-10 px-4 sm:px-6 lg:px-12 text-center max-w-7xl mx-auto w-full ">
         <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
+          initial={{ scale: 1.2, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.8, type: "spring" }}
-          className="w-full max-w-3xl mx-auto"
+          transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
+          className="w-full max-w-3xl mx-auto flex justify-center items-center"
         >
-          <DotLottieReact
-            src="https://lottie.host/73aa0bea-6f91-442d-927e-0813231ca2cd/F5APCMf7Ud.lottie"
-            loop
-            autoplay
-            speed={1}
-            style={{ width: "100%", height: "200px", maxHeight: "300px" }}
+          <img
+            src="../../../public/Mobile Marketing-pana.png"
+            alt=""
+            className="size-84"
           />
         </motion.div>
 
@@ -68,9 +65,12 @@ export default function ContactUs() {
           transition={{ delay: 0.7, duration: 0.6 }}
           className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 px-4"
         >
-          <button className="w-full sm:w-auto group px-6 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-violet-500 via-indigo-500 to-emerald-500 text-white text-base sm:text-lg font-bold rounded-full shadow-xl hover:shadow-violet-500/30 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105">
-            <span className="flex items-center justify-center gap-2">
-              Start Free Audit
+          <a
+            href="mailto:contact@company.com"
+            className="w-full sm:w-auto group px-6 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-violet-500 via-indigo-500 to-emerald-500 text-white text-base sm:text-lg font-bold rounded-full shadow-xl hover:shadow-violet-500/30 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
+          >
+            <span className="flex items-center justify-center gap-2 text-black">
+              Send us an Email
               <svg
                 className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform"
                 fill="none"
@@ -81,14 +81,11 @@ export default function ContactUs() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                 />
               </svg>
             </span>
-          </button>
-          <button className="w-full sm:w-auto px-6 sm:px-10 py-4 sm:py-5 bg-white/5 backdrop-blur-sm border-2 border-white/20 text-white text-base sm:text-lg font-bold rounded-full hover:bg-white/10 transition-all duration-300 hover:border-violet-500/50">
-            Watch Demo
-          </button>
+          </a>
         </motion.div>
       </div>
 

@@ -2,13 +2,13 @@ import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import digitalMarketing from "../../../public/Marketing consulting-cuate-min.png";
-import socialMediaMarketing from "../../../public/Marketing-pana-min.png";
+import socialMediaMarketing from "../../../public/SEO.png";
 import ppcAdvertising from "../../../public/Business Plan-amico-min.png";
-import webDevelopment from "../../../public/At the office-cuate-min.png";
-import design from "../../../public/Website Creator-amico.png";
-import softwareDevelopment from "../../../public/Data extraction-rafiki-min.png";
-import mobileDevelopment from "../../../public/Online world-amico-min.png";
-import digitalMarketing1 from "../../../public/Online world-rafiki-min.png";
+import webDevelopment from "../../../public/web.png";
+import design from "../../../public/UI-UX.png";
+import softwareDevelopment from "../../../public/Developer activity-Compressed.png";
+import mobileDevelopment from "../../../public/MOBILE.png";
+import digitalMarketing1 from "../../../public/Digital marketingCompressed.png";
 
 const seoServices = [
   {
@@ -16,7 +16,7 @@ const seoServices = [
     icon: digitalMarketing1,
   },
   {
-    title: "SOCIAL MEDIA MARKETING", 
+    title: "SOCIAL MEDIA MARKETING",
     icon: digitalMarketing,
   },
   {
