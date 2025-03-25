@@ -211,7 +211,7 @@ const ServiceCard = ({ service, index, navigate }: ServiceCardProps) => {
       variants={cardVariants}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="relative bg-gradient-to-br from-violet-500/20 via-indigo-500/20 to-emerald-500/25 backdrop-blur-xl p-2  rounded-2xl sm:rounded-3xl border-1 border-white/10 cursor-pointer z-10 transform-all"
+      className="relative bg-gradient-to-br from-violet-500/20 via-indigo-500/20 to-emerald-500/25 backdrop-blur-xl p-2  rounded-2xl sm:rounded-3xl border-4 border-white/10 cursor-pointer z-10 transform-all"
       onClick={() => navigate("/seoService")}
       style={{
         willChange: "transform",
@@ -289,7 +289,7 @@ const StrategicSEOSection = () => {
   return (
     <section
       ref={ref}
-      className="min-h-screen w-full text-white flex items-center justify-center overflow-hidden relative py-16 sm:py-24"
+      className="min-h-screen w-full text-white flex items-center justify-center relative py-16 sm:py-24 "
     >
       <div className="z-10 w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
         <motion.div

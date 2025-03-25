@@ -37,7 +37,7 @@ export default function ContactUs() {
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black leading-tight tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white via-violet-200 to-gray-300 animate-gradient px-4"
+          className="text-4xl sm:text-5xl  font-black leading-tight tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white via-violet-200 to-gray-300 animate-gradient px-4"
         >
           ILLUMINATE YOUR <br className="hidden sm:block" />
           <span className="inline-block mt-2 bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-indigo-500 to-emerald-500 animate-gradient-fast">

@@ -5,15 +5,15 @@ import Footer from "./Footer";
 
 const Layout: React.FC = () => {
   return (
-    <div className="h-screen w-screen bg-black">
+    <div className="h-screen w-screen bg-black  no-scrollbar">
       {/* Main content */}
       <Header />
-      <div className="z-10 pt-6 md:pt-4">
-        <main>
+      <div className="z-10 pt-6 md:pt-4 overflow-hidden">
+        <main className="overflow-hidden">
           <Outlet />
+          <Footer />
         </main>
       </div>
-      <Footer />
     </div>
   );
 };

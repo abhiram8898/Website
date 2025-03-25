@@ -21,17 +21,17 @@ export default function About() {
       </div>
 
       {/* Main content */}
-      <div className="container mx-auto relative z-10 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
+      <div className=" mx-auto relative z-10 flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-12">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-radial from-purple-900/20 via-black to-black animate-pulse" />
           <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-30" />
         </div>
 
         {/* Text content */}
-        <div className="relative z-10 w-full lg:w-1/2 space-y-6 sm:space-y-8">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-indigo-400 to-emerald-400 animate-gradient">
-            ABOUT <br className="hidden sm:block" />
-            <span className="inline-block mt-2 sm:mt-4 bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-indigo-400 to-emerald-400">
+        <div className="relative z-10 w-full lg:w-1/2 space-y-6  text-start">
+          <h1 className="text-4xl sm:text-5xl  font-extrabold leading-tight tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-indigo-400 to-emerald-400 animate-gradient">
+            About <br className="hidden sm:block" />
+            <span className="inline-block mt-2  bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-indigo-400 to-emerald-400">
               Christy Digital Strategies
             </span>
           </h1>

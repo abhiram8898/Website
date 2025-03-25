@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="bg-black/80 backdrop-blur-lg shadow-lg mt-auto px-2">
-      <div className="mx-auto px-4 sm:px-8 py-8">
+      <div className="mx-auto px-4 sm:px-8 py-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Logo Column */}
           <motion.div
@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
           </motion.div>
 
           {/* Navigation Column */}
-          <nav className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-8">
+          <nav className="flex flex-row justify-center items-center space-x-4">
             {["Services", "About", "Contact"].map((item) => (
               <motion.div
                 key={item}
@@ -59,7 +59,7 @@ const Footer: React.FC = () => {
             <p className="hover:text-gray-300 transition-colors">
               © {new Date().getFullYear()} Christy Digital. All rights reserved.
             </p>
-            <div className="flex justify-center gap-4 mt-4">
+            <div className="flex justify-center gap-4 mt-2">
               <motion.a
                 href="https://twitter.com"
                 target="_blank"
