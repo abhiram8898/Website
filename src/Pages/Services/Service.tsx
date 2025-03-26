@@ -280,33 +280,38 @@ const StrategicSEOSection = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.1,
+        staggerChildren: 0.2,
       },
     },
   };
 
+  const itemVariants = {
+    hidden: { opacity: 0, x: -120 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.4 } },
+  };
   return (
     <section
       ref={ref}
       className="min-h-screen w-full text-white flex items-center justify-center relative py-16 sm:py-24 "
     >
       <div className="z-10 w-full mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center">
-        <motion.div
-          className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6"
+        <motion.ul
+          className="animal-list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
           variants={containerVariants}
           initial="hidden"
-          animate={controls}
+          animate="visible"
         >
           {seoServices.map((service, index) => (
-            <ServiceCard
-              key={service.title}
-              service={service}
-              index={index}
-              navigate={navigate}
-            />
+            <motion.div key={index + 1} className="box" variants={itemVariants}>
+              <ServiceCard
+                key={service.title}
+                service={service}
+                index={index}
+                navigate={navigate}
+              />
+            </motion.div>
           ))}
-        </motion.div>
+        </motion.ul>
       </div>
     </section>
   );
